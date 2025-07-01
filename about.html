@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maison | Lorent - Swiss Horological Excellence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Root Variables */
+    :root {
+      --primary-black: #1a1a1a;
+      --soft-black: #2c2c2c;
+      --pure-white: #ffffff;
+      --cream-white: #fefefe;
+      --gold-accent: #d4af37;
+      --light-gray: #f8f8f8;
+      --border-gray: #e8e8e8;
+      
+      --font-primary: 'Playfair Display', serif;
+      --font-secondary: 'Crimson Text', serif;
+    }
+
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--pure-white);
+      color: var(--primary-black);
+      font-family: var(--font-secondary);
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+    }
+
+    /* Header */
+    header {
+      background: var(--pure-white);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-gray);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.02);
+    }
+
+    .logo {
+      font-family: var(--font-primary);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--primary-black);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--primary-black);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--gold-accent);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -5px;
+      left: 50%;
+      background: var(--gold-accent);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .basket-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #basket-count {
+      background: var(--gold-accent);
+      color: var(--pure-white);
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--cream-white) 0%, var(--light-gray) 100%);
+    }
+
+    .hero h1 {
+      font-family: var(--font-primary);
+      font-size: 4rem;
+      font-weight: 400;
+      color: var(--primary-black);
+      margin-bottom: 2rem;
+      letter-spacing: 3px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: var(--soft-black);
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+
+    .content-section {
+      margin-bottom: 6rem;
+    }
+
+    .content-section h2 {
+      font-family: var(--font-primary);
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: var(--primary-black);
+      letter-spacing: 1px;
+    }
+
+    .content-section p {
+      font-size: 1.1rem;
+      color: var(--soft-black);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      margin-bottom: 6rem;
+    }
+
+    .content-image {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  overflow: hidden; /* important: prevents overflow */
+}
+
+.content-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* or 'cover' if you want it to fill the area */
+  display: block;
+}
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .value-card {
+      background: var(--light-gray);
+      padding: 3rem 2rem;
+      text-align: center;
+      border: 1px solid var(--border-gray);
+    }
+
+    .value-card h3 {
+      font-family: var(--font-primary);
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--primary-black);
+      letter-spacing: 1px;
+    }
+
+    .value-card p {
+      font-size: 1rem;
+      color: var(--soft-black);
+      line-height: 1.6;
+    }
+
+    .timeline {
+      background: var(--light-gray);
+      padding: 4rem 3rem;
+      margin: 6rem 0;
+    }
+
+    .timeline h2 {
+      font-family: var(--font-primary);
+      font-size: 2.5rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary-black);
+      letter-spacing: 1px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .timeline-year {
+      font-family: var(--font-primary);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold-accent);
+      min-width: 100px;
+      margin-right: 2rem;
+    }
+
+    .timeline-content {
+      font-size: 1.1rem;
+      color: var(--soft-black);
+      line-height: 1.6;
+    }
+
+    /* Chat Styles */
+    #chat-icon {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: var(--primary-black);
+      color: var(--pure-white);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 2000;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    #chat-icon:hover {
+      background: var(--gold-accent);
+      transform: scale(1.1);
+    }
+
+    #chat-box {
+      position: fixed;
+      bottom: 110px;
+      right: 36px;
+      width: 380px;
+      background: var(--pure-white);
+      color: var(--primary-black);
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      z-index: 2000;
+      overflow: hidden;
+      border: 1px solid var(--border-gray);
+    }
+
+    #chat-box.hidden {
+      display: none;
+    }
+
+    .chat-header {
+      background: var(--primary-black);
+      color: var(--pure-white);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .chat-header h3 {
+      font-family: var(--font-primary);
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .chat-header p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .chat-body {
+      padding: 2rem;
+    }
+
+    .chat-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: var(--light-gray);
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .chat-option:hover {
+      background: var(--border-gray);
+    }
+
+    .option-icon {
+      font-size: 2rem;
+    }
+
+    .option-content h4 {
+      font-family: var(--font-primary);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-black);
+    }
+
+    .option-content p {
+      font-size: 0.9rem;
+      color: var(--soft-black);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .voice-chat-btn {
+      background: var(--primary-black);
+      color: var(--pure-white);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-family: var(--font-secondary);
+    }
+
+    .voice-chat-btn:hover {
+      background: var(--gold-accent);
+    }
+
+    #close-chat {
+      width: 100%;
+      background: var(--light-gray);
+      color: var(--primary-black);
+      border: none;
+      padding: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      border-top: 1px solid var(--border-gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #close-chat:hover {
+      background: var(--border-gray);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav {
+        gap: 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .main-content {
+        padding: 4rem 1.5rem;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline {
+        padding: 3rem 1.5rem;
+      }
+
+      .timeline-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      .timeline-year {
+        margin-right: 0;
+      }
+
+      #chat-box {
+        width: calc(100vw - 40px);
+        right: 20px;
+        left: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+   <header>
+    <a href="index.html" class="logo">LORENT</a>
+    <nav>
+      <a href="collections.html">Collections</a>
+      <a href="about.html">Maison</a>
+      <a href="stories.html">Stories</a>
+      <a href="basket.html" class="basket-link">
+        <span>🛒</span>
+        <span id="basket-count">0</span>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>LA MAISON LORENT</h1>
+      <p>Nestled in the heart of the Swiss Jura Mountains, our atelier continues a tradition of excellence that spans over a century. Here, time is not merely measured—it is mastered.</p>
+    </section>
+
+    <div class="main-content">
+      <section class="content-section">
+        <div class="two-column">
+          <div>
+            <h2>OUR PHILOSOPHY</h2>
+            <p>At Lorent, we believe that a timepiece is more than an instrument—it is a companion through life's most precious moments. Each creation embodies our unwavering commitment to precision, beauty, and enduring quality.</p>
+            <p>Our philosophy centers on the harmony between tradition and innovation. While we honor the time-tested techniques passed down through generations of master watchmakers, we continuously seek to push the boundaries of horological artistry.</p>
+            <p>Every Lorent timepiece tells a story of meticulous craftsmanship, where each component is carefully selected and assembled by hand in our Swiss atelier.</p>
+          </div>
+          <div class="content-image"><img src="other_images/about_1.jpeg"></div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="two-column">
+          <div class="content-image"><img src="other_images/about_2.jpg"></div>
+          <div>
+            <h2>ARTISANAL EXCELLENCE</h2>
+            <p>Within the walls of our manufacture in La Chaux-de-Fonds, a team of skilled artisans dedicates their expertise to creating timepieces of exceptional quality. Each watchmaker brings years of experience and an unwavering attention to detail.</p>
+            <p>Our workshops are equipped with both traditional tools and cutting-edge technology, allowing us to maintain the highest standards while embracing innovation. From hand-finishing movement components to setting precious stones, every step reflects our commitment to excellence.</p>
+            <p>The creation of a single Lorent timepiece can take several months, a testament to the care and precision invested in each piece.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>OUR VALUES</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <h3>HERITAGE</h3>
+            <p>Rooted in Swiss watchmaking tradition, we honor the legacy of master craftsmen while embracing contemporary innovation to create timepieces for the modern connoisseur.</p>
+          </div>
+          <div class="value-card">
+            <h3>PRECISION</h3>
+            <p>Every component is meticulously crafted and tested to ensure exceptional accuracy and reliability. Our movements are regulated to chronometer standards, guaranteeing superior performance.</p>
+          </div>
+          <div class="value-card">
+            <h3>BEAUTY</h3>
+            <p>We believe that true luxury lies in the harmony of form and function. Each timepiece is designed to be both a precision instrument and a work of art.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="timeline">
+      <h2>MILESTONES</h2>
+      <div class="timeline-item">
+        <div class="timeline-year">1912</div>
+        <div class="timeline-content">Henri Lorent establishes the first atelier in La Chaux-de-Fonds, beginning a legacy of Swiss horological excellence.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1928</div>
+        <div class="timeline-content">Introduction of our first self-winding mechanism, marking Lorent's entry into innovative movement design.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1955</div>
+        <div class="timeline-content">Launch of the Heritage Collection, featuring our signature guilloché dial patterns that become synonymous with Lorent elegance.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1978</div>
+        <div class="timeline-content">Development of our first in-house tourbillon movement, establishing Lorent among the elite manufacturers of haute horlogerie.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1995</div>
+        <div class="timeline-content">Opening of our modern manufacture facility, combining traditional craftsmanship with state-of-the-art technology.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2010</div>
+        <div class="timeline-content">Introduction of our proprietary alloy for cases, offering enhanced durability while maintaining the aesthetic appeal of precious metals.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-content">Celebrating 113 years of horological mastery with the launch of our most sophisticated collection to date.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Chat integration -->
+  <div id="chat-icon">💬</div>
+  <div id="chat-box" class="hidden">
+    <div class="chat-header">
+      <h3>Lorent Concierge</h3>
+      <p>Discover our heritage and craftsmanship</p>
+    </div>
+    <div class="chat-body">
+      <div class="chat-option">
+        <div class="option-icon">🎤</div>
+        <div class="option-content">
+          <h4>Heritage Consultation</h4>
+          <p>Learn about our history and manufacturing process</p>
+          <button id="start-voice-chat" class="voice-chat-btn">Begin Consultation</button>
+        </div>
+      </div>
+    </div>
+    <button id="close-chat">Close</button>
+  </div>
+
+  <script>
+    // Voicebot integration
+    const VOICEBOT_URL = 'https://lorent-watchmaker-v1.vercel.app/?config_id=d531e29d-ac3d-4de2-bf71-dfd6f1daaa84';
+
+    // Floating chat icon logic
+    const chatIcon = document.getElementById('chat-icon');
+    const chatBox = document.getElementById('chat-box');
+    const closeChat = document.getElementById('close-chat');
+    const startVoiceChat = document.getElementById('start-voice-chat');
+
+    chatIcon.addEventListener('click', () => {
+      chatBox.classList.toggle('hidden');
+    });
+
+    closeChat.addEventListener('click', () => {
+      chatBox.classList.add('hidden');
+    });
+
+    // Handle voice chat button click
+    if (startVoiceChat) {
+      startVoiceChat.addEventListener('click', () => {
+        const voiceChatWindow = window.open(
+          VOICEBOT_URL, 
+          'LorentVoiceBot', 
+          'width=900,height=700,scrollbars=yes,resizable=yes,status=yes,menubar=no,toolbar=no'
+        );
+        
+        if (voiceChatWindow) {
+          voiceChatWindow.focus();
+          chatBox.classList.add('hidden');
+        } else {
+          alert('Please allow popups to access the consultation feature.');
+        }
+      });
+    }
+
+    // Basket count (if coming from other pages)
+    const basketCount = localStorage.getItem('basketCount') || 0;
+    document.getElementById('basket-count').textContent = basketCount;
+  </script>
+</body>
+</html>
