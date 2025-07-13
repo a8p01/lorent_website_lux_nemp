@@ -94,6 +94,14 @@
       width: 100%;
     }
 
+    nav a.active {
+      color: var(--gold-accent);
+    }
+
+    nav a.active::after {
+      width: 100%;
+    }
+
     .basket-link {
       display: flex;
       align-items: center;
@@ -260,34 +268,50 @@
       line-height: 1.6;
     }
 
-    /* Chat Styles */
+    /* Enhanced Chat Styles - More Noticeable */
     #chat-icon {
       position: fixed;
       bottom: 32px;
       right: 32px;
-      background: var(--primary-black);
-      color: var(--pure-white);
-      width: 60px;
-      height: 60px;
+      background: linear-gradient(135deg, var(--gold-accent), #e6c758);
+      color: var(--primary-black);
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       z-index: 2000;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      animation: pulse 2s infinite;
+      border: 3px solid var(--pure-white);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      }
+      50% {
+        box-shadow: 0 8px 35px rgba(212, 175, 55, 0.7);
+        transform: scale(1.05);
+      }
+      100% {
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      }
     }
 
     #chat-icon:hover {
-      background: var(--gold-accent);
+      background: linear-gradient(135deg, #e6c758, var(--gold-accent));
       transform: scale(1.1);
+      animation: none;
     }
 
     #chat-box {
       position: fixed;
-      bottom: 110px;
+      bottom: 120px;
       right: 36px;
       width: 380px;
       background: var(--pure-white);
@@ -304,7 +328,7 @@
     }
 
     .chat-header {
-      background: var(--primary-black);
+      background: linear-gradient(135deg, var(--primary-black), var(--soft-black));
       color: var(--pure-white);
       padding: 1.5rem;
       text-align: center;
@@ -360,8 +384,8 @@
     }
 
     .voice-chat-btn {
-      background: var(--primary-black);
-      color: var(--pure-white);
+      background: var(--gold-accent);
+      color: var(--primary-black);
       border: none;
       padding: 0.8rem 1.5rem;
       font-size: 0.9rem;
@@ -370,10 +394,12 @@
       cursor: pointer;
       transition: background 0.3s ease;
       font-family: var(--font-secondary);
+      border-radius: 4px;
+      font-weight: 600;
     }
 
     .voice-chat-btn:hover {
-      background: var(--gold-accent);
+      background: #e6c758;
     }
 
     #close-chat {
@@ -454,8 +480,7 @@
     <a href="index.html" class="logo">LORENT</a>
     <nav>
       <a href="collections.html">Collections</a>
-      <a href="about.html">Maison</a>
-      <a href="stories.html">Stories</a>
+      <a href="about.html" class="active">Maison</a>
       <a href="basket.html" class="basket-link">
         <span>🛒</span>
         <span id="basket-count">0</span>
@@ -478,13 +503,13 @@
             <p>Our philosophy centers on the harmony between tradition and innovation. While we honor the time-tested techniques passed down through generations of master watchmakers, we continuously seek to push the boundaries of horological artistry.</p>
             <p>Every Lorent timepiece tells a story of meticulous craftsmanship, where each component is carefully selected and assembled by hand in our Swiss atelier.</p>
           </div>
-          <div class="content-image"><img src="other_images/about_1.jpeg"></div>
+          <div class="content-image"><img src="other_images/company_1.avif"></div>
         </div>
       </section>
 
       <section class="content-section">
         <div class="two-column">
-          <div class="content-image"><img src="other_images/about_2.jpg"></div>
+          <div class="content-image"><img src="other_images/company_2.avif"></div>
           <div>
             <h2>ARTISANAL EXCELLENCE</h2>
             <p>Within the walls of our manufacture in La Chaux-de-Fonds, a team of skilled artisans dedicates their expertise to creating timepieces of exceptional quality. Each watchmaker brings years of experience and an unwavering attention to detail.</p>
@@ -547,18 +572,18 @@
   </main>
 
   <!-- Chat integration -->
-  <div id="chat-icon">💬</div>
+   <div id="chat-icon">💬</div>
   <div id="chat-box" class="hidden">
     <div class="chat-header">
       <h3>Lorent Concierge</h3>
-      <p>Discover our heritage and craftsmanship</p>
+      <p>Personalized timepiece consultation</p>
     </div>
     <div class="chat-body">
       <div class="chat-option">
         <div class="option-icon">🎤</div>
         <div class="option-content">
-          <h4>Heritage Consultation</h4>
-          <p>Learn about our history and manufacturing process</p>
+          <h4>Private Consultation</h4>
+          <p>Discuss your preferences with our horological advisor</p>
           <button id="start-voice-chat" class="voice-chat-btn">Begin Consultation</button>
         </div>
       </div>
@@ -568,7 +593,7 @@
 
   <script>
     // Voicebot integration
-    const VOICEBOT_URL = 'https://lorentvoicebot.vercel.app/?config_id=d531e29d-ac3d-4de2-bf71-dfd6f1daaa84';
+    const VOICEBOT_URL = 'https://lorentvoicebot.vercel.app/?config_id=0359ded1-a9cd-4330-8709-3a0fd9c53419';
 
     // Floating chat icon logic
     const chatIcon = document.getElementById('chat-icon');
@@ -602,8 +627,8 @@
       });
     }
 
-    // Basket count (if coming from other pages)
-    const basketCount = localStorage.getItem('basketCount') || 0;
+    // Basket count display
+    const basketCount = parseInt(localStorage.getItem('basketCount')) || 0;
     document.getElementById('basket-count').textContent = basketCount;
   </script>
 </body>

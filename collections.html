@@ -293,34 +293,50 @@
       border-color: var(--gold-accent);
     }
 
-    /* Chat Styles */
+    /* Enhanced Chat Styles - More Noticeable */
     #chat-icon {
       position: fixed;
       bottom: 32px;
       right: 32px;
-      background: var(--primary-black);
-      color: var(--pure-white);
-      width: 60px;
-      height: 60px;
+      background: linear-gradient(135deg, var(--gold-accent), #e6c758);
+      color: var(--primary-black);
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       z-index: 2000;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      animation: pulse 2s infinite;
+      border: 3px solid var(--pure-white);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      }
+      50% {
+        box-shadow: 0 8px 35px rgba(212, 175, 55, 0.7);
+        transform: scale(1.05);
+      }
+      100% {
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+      }
     }
 
     #chat-icon:hover {
-      background: var(--gold-accent);
+      background: linear-gradient(135deg, #e6c758, var(--gold-accent));
       transform: scale(1.1);
+      animation: none;
     }
 
     #chat-box {
       position: fixed;
-      bottom: 110px;
+      bottom: 120px;
       right: 36px;
       width: 380px;
       background: var(--pure-white);
@@ -337,7 +353,7 @@
     }
 
     .chat-header {
-      background: var(--primary-black);
+      background: linear-gradient(135deg, var(--primary-black), var(--soft-black));
       color: var(--pure-white);
       padding: 1.5rem;
       text-align: center;
@@ -393,8 +409,8 @@
     }
 
     .voice-chat-btn {
-      background: var(--primary-black);
-      color: var(--pure-white);
+      background: var(--gold-accent);
+      color: var(--primary-black);
       border: none;
       padding: 0.8rem 1.5rem;
       font-size: 0.9rem;
@@ -403,10 +419,12 @@
       cursor: pointer;
       transition: background 0.3s ease;
       font-family: var(--font-secondary);
+      border-radius: 4px;
+      font-weight: 600;
     }
 
     .voice-chat-btn:hover {
-      background: var(--gold-accent);
+      background: #e6c758;
     }
 
     #close-chat {
@@ -475,7 +493,6 @@
     <nav>
       <a href="collections.html" class="active">Collections</a>
       <a href="about.html">Maison</a>
-      <a href="stories.html">Stories</a>
       <a href="basket.html" class="basket-link">
         <span>🛒</span>
         <span id="basket-count">0</span>
@@ -498,7 +515,6 @@
       </div>
     </nav>
 
-<!-- Classic Collection -->
 <!-- Classic Collection -->
 <section id="classic" class="collection-section">
   <h2 class="collection-title">CLASSIC</h2>
@@ -604,9 +620,7 @@
   </div>
 </section>
 
-
     <!-- Special Collection -->
-   <!-- Special Collection -->
 <section id="special" class="collection-section">
   <h2 class="collection-title">SPECIAL</h2>
   <p class="collection-description">Limited editions and masterworks. Where design, rarity, and complication converge at the peak of horology.</p>
@@ -664,12 +678,22 @@
   </div>
 
   <script>
-    // Shopping basket count
-    let basketCount = 0;
+    // Shopping basket functionality with localStorage
+    let basketCount = parseInt(localStorage.getItem('basketCount')) || 0;
+    let basketItems = JSON.parse(localStorage.getItem('basketItems')) || [];
     const basketCountElem = document.getElementById('basket-count');
+    basketCountElem.textContent = basketCount;
+
     document.querySelectorAll('.add-basket-btn').forEach(btn => {
       btn.addEventListener('click', () => {
+        const watchName = btn.getAttribute('data-name');
         basketCount++;
+        basketItems.push(watchName);
+        
+        // Save to localStorage
+        localStorage.setItem('basketCount', basketCount);
+        localStorage.setItem('basketItems', JSON.stringify(basketItems));
+        
         basketCountElem.textContent = basketCount;
         btn.textContent = "Submitted";
         btn.disabled = true;
@@ -681,7 +705,7 @@
     });
 
     // Voicebot integration
-    const VOICEBOT_URL = 'https://lorentvoicebot.vercel.app/?config_id=d531e29d-ac3d-4de2-bf71-dfd6f1daaa84';
+    const VOICEBOT_URL = 'https://lorentvoicebot.vercel.app/?config_id=0359ded1-a9cd-4330-8709-3a0fd9c53419';
 
     // Floating chat icon logic
     const chatIcon = document.getElementById('chat-icon');
@@ -755,3 +779,4 @@
   </script>
 </body>
 </html>
+      
